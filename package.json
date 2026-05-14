@@ -1,6 +1,6 @@
 {
   "name": "dyrcamp-conocimiento",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -13,7 +13,10 @@
     "format": "prettier --write --experimental-cli src/"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "@tailwindcss/vite": "^4.3.0",
     "gsap": "^3.15.0",
+    "tailwindcss": "^4.3.0",
     "vue": "^3.5.32"
   },
   "devDependencies": {
