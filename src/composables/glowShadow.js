@@ -85,7 +85,7 @@ export default function glowShadow(options = ({})) {
 	const playAnim = (targetEl) => {
 		// Only clear shadow if we're not keeping the final shadow
 		if (!keepFinalShadow) {
-			try { targetEl.style.setProperty('text-shadow', 'none', 'important') } catch (_) { }
+			try { targetEl.style.setProperty('text-shadow', 'none', 'important') } catch { }
 		} else {
 			// For keepFinalShadow, start with a non-important inline value to avoid fighting the final important set
 			gsap.set(targetEl, { textShadow: initShadowVal })
@@ -135,13 +135,13 @@ export default function glowShadow(options = ({})) {
 		// Pin with !important and clean SplitText
 		tl.call(() => {
 			try { targetEl.style.setProperty('text-shadow', finalShadow, 'important') }
-			catch (_) { }
+			catch { }
 		}, null, '+=0.01')
 
 		tl.call(() => {
 			split?.revert(); split = null;
 			try { targetEl.style.setProperty('text-shadow', finalShadow, 'important') }
-			catch (_) { }
+			catch { }
 		}, null, '+=0')
 
 		return tl

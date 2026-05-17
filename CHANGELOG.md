@@ -2,6 +2,61 @@
 
 Todos los cambios relevantes de este proyecto se documentan en este archivo.
 
+## [0.2.0] - 2026-05-17
+
+### Added
+
+- Añadido `Footer.vue` con información corporativa, enlace de privacidad y LinkedIn.
+- Añadidos assets de Section5:
+  - `dyresel-cumplimiento.png`
+  - `dyresel-asesoramiento.png`
+  - `dyresel-soluciones.png`
+  - `dyresel-experiencia.png`
+- Añadido fondo global `.landing-dot-bg` fuera de `#smooth-wrapper`.
+- Añadida sección de contacto `Section7.vue` con formulario EmailJS, estados de éxito/error, checkboxes de consentimiento y honeypot.
+
+### Animations
+
+- `App.vue`
+  - Añadida animación ScrollTrigger scrub del punto blanco global.
+  - El punto parte desde el bottom fuera del viewport, sube hasta el centro y escala de `2%` a `150%`.
+  - El punto queda como fondo blanco fijo para el resto de la landing.
+  - Añadido estado reducido para `prefers-reduced-motion`.
+  - Añadido cambio de color del header cuando el fondo pasa a claro.
+
+- `Header.vue`
+  - Los paths SVG del logotipo cambian de blanco a `#24333b` sobre fondo claro.
+  - El CTA cambia a fondo `#24333b`, texto blanco y hover claro con texto oscuro.
+
+- `Section5.vue`
+  - Añadida animación principal de imágenes con pin, scrub y GSAP Flip.
+  - La imagen 1 inicia en center.
+  - La imagen 2 sube por el slot derecho y pasa a center mientras la imagen 1 pasa a left.
+  - La imagen 3 sube por el slot derecho y entra a center en el siguiente Flip.
+  - La imagen 4 sube por el slot derecho y entra a center en el último Flip.
+  - Las imágenes laterales activas quedan en opacidad `0.5`.
+  - La imagen central activa queda en opacidad `1`.
+  - Las imágenes que salen de la secuencia pasan a opacidad `0`.
+  - Añadida sincronización de `text__list`: cada `li` hace fade-in cuando su imagen asociada entra al centro y el texto anterior hace fade-out.
+  - Añadidos resets de Flip para evitar deformaciones al hacer scroll inverso y volver a avanzar.
+
+### Changed
+
+- `Section5.vue`
+  - Sustituido el grid Tailwind fijo de imágenes por un layout CSS interno con variables proporcionales.
+  - A `1920x1080`, la imagen central mide `562x808px`.
+  - A `1920x1080`, las imágenes laterales miden `185x248px`.
+  - El responsive escala las cajas proporcionalmente hasta tablet horizontal, manteniendo medidas estables para GSAP Flip.
+
+- `README.md`
+  - Actualizada la estructura del proyecto.
+  - Documentado el funcionamiento de Header, Section3, Section5, Section7 y Footer.
+  - Documentadas las fórmulas responsive de Section5.
+
+### Version
+
+- Versión del proyecto actualizada a `0.2.0`.
+
 ## [0.1.0] - 2026-05-14
 
 ### Added

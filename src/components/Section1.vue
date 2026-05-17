@@ -5,7 +5,7 @@
             <h1 class="section__title-h1 text-left leading-[0.9] mb-4">
                 <span class="text-title-l align-top font-bold tracking-tight-3">Con conocimiento normativo,<br>no tienes
                     nada que </span>
-                <span class="plane-title font-liger text-[4rem] text-secondary">temer</span>
+                <span class="plane-title font-liger text-[4.5rem] text-secondary">temer</span>
             </h1>
             <p class="lighting-text section__title-p text-title-s font-normal tracking-8">
                 La luz siempre gana

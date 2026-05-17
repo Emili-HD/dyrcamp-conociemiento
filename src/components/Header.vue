@@ -93,6 +93,7 @@
         border: 1px solid white;
         border-radius: 999px;
         color: white;
+        text-transform: uppercase;
         padding: .75rem 1.5rem;
         transition: background-color .3s ease, color .3s ease;
     }
@@ -100,6 +101,18 @@
     .header__cta a:hover {
         background-color: #9ABCBF;
         color: #1f2e32;
+    }
+
+    .header.header--light-bg .header__cta a {
+        background-color: #24333b;
+        border-color: #24333b;
+        color: #fff;
+    }
+
+    .header.header--light-bg .header__cta a:hover {
+        background-color: #D3E2E3;
+        border-color: #D3E2E3;
+        color: #24333b;
     }
 
     @media (max-width: 768px) {
