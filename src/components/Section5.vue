@@ -41,11 +41,11 @@
                     class="image__slot image__slot--right relative flex flex-col justify-end"
                 >
                     <div
-                        ref="textListRef"
-                        class="text__list absolute top-[10%]"
+                        ref="desktopTextListRef"
+                        class="text__list text__list--desktop absolute top-[10%] hidden md:block"
                     >
                         <ul>
-                            <li class="absolute top-0">
+                            <li class="absolute top-0 min-w-52">
                                 <h2 class="text-title-m font-medium text-dark leading-none">Total cumplimiento normativo
                                 </h2>
                                 <p class="font-sans text-base text-dark">Conocemos el marco regulatorio nacional e
@@ -53,20 +53,20 @@
                                     normativa
                                     a la práctica</p>
                             </li>
-                            <li class="absolute top-0 opacity-0">
+                            <li class="absolute top-0 min-w-52 opacity-0">
                                 <h2 class="text-title-m font-medium text-dark leading-none">Asesoramiento técnico
                                     especializado</h2>
                                 <p class="font-sans text-base text-dark">Analizamos tu caso para ofrecerte la solución
                                     técnica que mejor encaja con tu vehículo y con la normativa</p>
                             </li>
-                            <li class="absolute top-0 opacity-0">
+                            <li class="absolute top-0 min-w-52 opacity-0">
                                 <h2 class="text-title-m font-medium text-dark leading-none">Soluciones homologadas y
                                     validadas</h2>
                                 <p class="font-sans text-base text-dark">Validamos cada producto previamente valorando
                                     sus
                                     prestaciones, compatibilidad y cumplimiento de la regulación vigente.</p>
                             </li>
-                            <li class="absolute top-0 opacity-0">
+                            <li class="absolute top-0 min-w-52 opacity-0">
                                 <h2 class="text-title-m font-medium text-dark leading-none">Experiencia en cada sector
                                 </h2>
                                 <p class="font-sans text-base text-dark">Trasladamos a cada tipología de vehículo el
@@ -118,6 +118,41 @@
                     </div>
                 </div>
             </div>
+            <div
+                ref="mobileTextListRef"
+                class="text__list text__list--mobile block md:hidden"
+            >
+                <ul>
+                    <li class="absolute top-0 min-w-52">
+                        <h2 class="uppercase text-[32px] font-medium text-dark leading-none">Total cumplimiento
+                            normativo
+                        </h2>
+                        <p class="font-sans text-[15px] text-dark">Conocemos el marco regulatorio nacional e
+                            internacional, estamos al día de cada actualización y sabemos cómo llevar cada
+                            normativa
+                            a la práctica</p>
+                    </li>
+                    <li class="absolute top-0 min-w-52 opacity-0">
+                        <h2 class="uppercase text-[32px] font-medium text-dark leading-none">Asesoramiento técnico
+                            especializado</h2>
+                        <p class="font-sans text-[15px] text-dark">Analizamos tu caso para ofrecerte la solución
+                            técnica que mejor encaja con tu vehículo y con la normativa</p>
+                    </li>
+                    <li class="absolute top-0 min-w-52 opacity-0">
+                        <h2 class="uppercase text-[32px] font-medium text-dark leading-none">Soluciones homologadas y
+                            validadas</h2>
+                        <p class="font-sans text-[15px] text-dark">Validamos cada producto previamente valorando
+                            sus
+                            prestaciones, compatibilidad y cumplimiento de la regulación vigente.</p>
+                    </li>
+                    <li class="absolute top-0 min-w-52 opacity-0">
+                        <h2 class="uppercase text-[32px] font-medium text-dark leading-none">Experiencia en cada sector
+                        </h2>
+                        <p class="font-sans text-[15px] text-dark">Trasladamos a cada tipología de vehículo el
+                            conocimiento especializado que nos dan más de 35 años de experiencia.</p>
+                    </li>
+                </ul>
+            </div>
         </div>
     </section>
 </template>
@@ -140,7 +175,8 @@
     const rightCardRef = ref(null)
     const nextRightCardRef = ref(null)
     const finalRightCardRef = ref(null)
-    const textListRef = ref(null)
+    const desktopTextListRef = ref(null)
+    const mobileTextListRef = ref(null)
     const centerImageRef = ref(null)
     const rightImageRef = ref(null)
     const nextRightImageRef = ref(null)
@@ -161,13 +197,14 @@
         const rightCard = rightCardRef.value
         const nextRightCard = nextRightCardRef.value
         const finalRightCard = finalRightCardRef.value
-        const textList = textListRef.value
+        const desktopTextList = desktopTextListRef.value
+        const mobileTextList = mobileTextListRef.value
         const centerImage = centerImageRef.value
         const rightImage = rightImageRef.value
         const nextRightImage = nextRightImageRef.value
         const finalRightImage = finalRightImageRef.value
 
-        if (!section || !wrapper || !images || !leftSlot || !centerSlot || !rightSlot || !centerCard || !rightCard || !nextRightCard || !finalRightCard || !textList || !centerImage || !rightImage || !nextRightImage || !finalRightImage) {
+        if (!section || !wrapper || !images || !leftSlot || !centerSlot || !rightSlot || !centerCard || !rightCard || !nextRightCard || !finalRightCard || !desktopTextList || !mobileTextList || !centerImage || !rightImage || !nextRightImage || !finalRightImage) {
             return
         }
 
@@ -180,7 +217,13 @@
 
         ctx = gsap.context(() => {
             const flipCardProps = 'transform,width,height,max-width,max-height,min-width,min-height,position,top,bottom,left,right'
-            const textItems = gsap.utils.toArray('li', textList)
+            const textLists = [desktopTextList, mobileTextList]
+            const textItems = Array.from({ length: 4 }, (_, index) => {
+                return textLists
+                    .map(textList => gsap.utils.toArray('li', textList)[index])
+                    .filter(Boolean)
+            })
+            const allTextItems = textItems.flat()
 
             gsap.set([centerCard, rightCard, nextRightCard, finalRightCard, centerImage, rightImage, nextRightImage, finalRightImage], {
                 willChange: 'transform'
@@ -198,7 +241,7 @@
                 autoAlpha: 0.5
             })
 
-            gsap.set(textItems, { autoAlpha: 0 })
+            gsap.set(allTextItems, { autoAlpha: 0 })
             gsap.set(textItems[0], { autoAlpha: 1 })
 
             gsap.set([nextRightCard, finalRightCard], {
@@ -501,18 +544,18 @@
     }
 
     .section__wrapper {
-        min-height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
+        min-height: 100vh;
     }
 
     .images {
-        --center-width: clamp(300px, 29.2708vw, 562px);
+        --center-width: clamp(275px, 29.2708vw, 562px);
         --center-height: calc(var(--center-width) * 808 / 562);
         --side-width: calc(var(--center-width) * 185 / 562);
         --side-height: calc(var(--side-width) * 248 / 185);
-        --image-gap: clamp(1.5rem, calc(-0.5rem + 3.125vw), 3.25rem);
+        --image-gap: clamp(1rem, calc(-0.5rem + 3.125vw), 3.25rem);
 
         display: grid;
         width: max-content;
@@ -565,5 +608,37 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+    }
+
+    .text__list--mobile {
+        margin-top: 1.5rem;
+        min-height: 11rem;
+        position: relative;
+        width: min(82vw, 28rem);
+    }
+
+    .text__list--mobile ul {
+        position: relative;
+    }
+
+    @media (max-width: 768px) {
+        .section__wrapper {
+            align-items: flex-start;
+            flex-direction: column;
+            display: flex;
+            justify-content: flex-start;
+            margin-left: 6vw;
+        }
+    }
+
+    @media (max-width: 520px) {
+        .section__wrapper {
+            margin-left: 0;
+            justify-content: center;
+        }
+
+        .images {
+            left: 12%;
+        }
     }
 </style>

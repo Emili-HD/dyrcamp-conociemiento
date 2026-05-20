@@ -1,10 +1,12 @@
 <template>
     <footer
-        class="footer fixed bottom-0 inset-x-0 px-16 py-5.25 z-999"
+        class="footer px-4 md:px-16 py-3 md:py-5.25 z-999"
+        :class="fixed ? 'fixed bottom-0 inset-x-0' : 'relative'"
         ref="footerRef"
     >
-        <div class="footer__info flex justify-between items-center font-sans text-xs">
-            <div class="footer__info-copyright uppercase leading-none text-left">
+        <div
+            class="footer__info flex flex-col md:flex-row justify-center md:justify-between gap-3 items-center font-sans text-body-xs">
+            <div class="footer__info-copyright uppercase leading-none text-center md:text-left">
                 Sistemas de iluminación y señalización para vehículos industriales. <a href="tel:+34976126616">T. 976 12
                     66 16</a>
             </div>
@@ -94,10 +96,22 @@
 
     gsap.registerPlugin(ScrollTrigger);
 
+    defineProps({
+        fixed: {
+            type: Boolean,
+            default: true,
+        },
+    })
+
     const footerRef = ref(null);
 
     onMounted(() => {
-        const site = footerRef.value.querySelector('.footer__logo-site a');
+        const site = footerRef.value?.querySelector('.footer__logo-site a');
+
+        if (!site) {
+            return
+        }
+
         gsap.set(site, { letterSpacing: '6em', opacity: 0, position: 'absolute', rotateX: 90 });
 
         gsap.to(
@@ -119,3 +133,29 @@
         );
     });
 </script>
+
+<style>
+    .footer {
+
+        .footer__info-copyright,
+        .privacy-link {
+            color: var(--color-light);
+        }
+
+        .social-link svg path {
+            fill: var(--color-light);
+        }
+    }
+
+    .footer.footer--dark {
+
+        .footer__info-copyright,
+        .privacy-link {
+            color: var(--color-dark);
+        }
+
+        .social-link svg path {
+            fill: var(--color-dark);
+        }
+    }
+</style>

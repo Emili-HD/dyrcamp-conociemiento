@@ -48,9 +48,13 @@
                 <Section6 />
                 <Section7 />
             </main>
+            <Footer
+                :fixed="false"
+                class="footer--dark md:hidden"
+            />
         </div>
     </div>
-    <Footer />
+    <Footer class="hidden md:block" />
 </template>
 
 <script setup>
@@ -81,7 +85,7 @@
         let smoother = ScrollSmoother.create({
             smooth: 1.5, // how long (in seconds) it takes to "catch up" to the native scroll position
             effects: true, // looks for data-speed and data-lag attributes on elements
-            smoothTouch: false, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
+            smoothTouch: 0.1, // keep a tiny smoothing layer on touch/tablet so pinned ScrollTriggers use the same scroll model
         });
 
         document.querySelector(".header__cta a").addEventListener("click", e => {
@@ -117,6 +121,12 @@
         const header = document.querySelector('.header')
         const headerLogoPaths = gsap.utils.toArray('.header .logotip path, .header .imagotip path')
         const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        const footers = gsap.utils.toArray('.footer')
+        const setFooterDark = (isDark) => {
+            footers.forEach(footer => {
+                footer.classList.toggle('footer--dark', isDark)
+            })
+        }
 
         if (!dotBg || !section3) {
             return
@@ -147,16 +157,19 @@
                         gsap.set(dotBg, { y: 0, scale: 1.5, autoAlpha: 1, willChange: 'auto' })
                         gsap.set(headerLogoPaths, { fill: '#24333b' })
                         header?.classList.add('header--light-bg')
+                        setFooterDark(true)
                     },
                     onEnterBack: () => {
                         gsap.set(dotBg, { y: 0, scale: 1.5, autoAlpha: 1, willChange: 'auto' })
                         gsap.set(headerLogoPaths, { fill: '#24333b' })
                         header?.classList.add('header--light-bg')
+                        setFooterDark(true)
                     },
                     onLeaveBack: () => {
                         gsap.set(dotBg, { y: getDotStartY, scale: dotInitialScale, autoAlpha: 1, willChange: 'transform, opacity' })
                         gsap.set(headerLogoPaths, { fill: '#fff' })
                         header?.classList.remove('header--light-bg')
+                        setFooterDark(false)
                     },
                 })
                 return
@@ -173,8 +186,10 @@
                     onUpdate: () => {
                         if (dotTl.time() >= 2) {
                             header?.classList.add('header--light-bg')
+                            setFooterDark(true)
                         } else {
                             header?.classList.remove('header--light-bg')
+                            setFooterDark(false)
                         }
                     }
                 },

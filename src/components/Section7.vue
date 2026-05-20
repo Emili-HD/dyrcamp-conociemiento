@@ -2,17 +2,18 @@
     <section
         ref="sectionEl"
         id="contact"
-        class="section section-7 items-start pt-[15%]"
+        class="section section-7 items-start pt-32 pb-20 lg:pt-[25%] xl:pt-[15%]"
     >
-        <div class="section__wrapper col-start-2 col-span-4 leading-none">
-            <h2 class="text-title-xl text-dark leading-[1.2] tracking-4 uppercase max-w-[20ch] mb-4">
+        <div class="section__wrapper col-start-1 col-span-full md:col-span-2 lg:col-start-2 lg:col-span-4 leading-none">
+            <h2 class="text-[46px] md:text-title-xl text-dark leading-[1.2] tracking-4 uppercase max-w-[20ch] mb-4">
                 Llevamos la iluminación de tu vehículo industrial donde nadie más se atreve.
             </h2>
-            <p class="text-subtitle-lg text-dark font-light font-sans leading-[1.2]">Contacta con nosotros y te
+            <p class="text-[20px] md:text-subtitle-lg text-dark font-light font-sans leading-[1.2]">Contacta con
+                nosotros y te
                 asesoraremos.</p>
         </div>
         <div
-            class="form__wrapper col-start-7 col-span-5 py-14 relative"
+            class="form__wrapper col-start-1 col-span-full md:col-start-3 md:col-span-2 lg:col-start-7 lg:col-span-5 xl:py-14 relative"
             :class="{ 'is-idle': status === 'idle', 'is-success': status === 'success', 'is-error': status === 'error' }"
         >
             <form
@@ -231,6 +232,7 @@
             top: 0;
             font-family: var(--font-inter);
             letter-spacing: var(--letter-spacing--3);
+            font-size: var(--text-xs);
         }
 
         & textarea {
@@ -263,6 +265,12 @@
         & button[disabled] {
             opacity: .6;
             cursor: not-allowed;
+        }
+
+        & button:hover {
+            background-color: #D3E2E3;
+            border-color: #D3E2E3;
+            color: #24333b;
         }
     }
 
@@ -369,6 +377,27 @@
             box-shadow: 1px 1px 0 1px var(--light-color), inset -1px -1px 0 1px var(--light-color);
             transition: all 0.3s ease;
             transition-delay: 0.15s;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: stretch;
+            gap: 2rem;
+            padding-inline: 10vw;
+        }
+    }
+
+    @media (max-width: 520px) {
+        .section {
+            padding-inline: 1rem;
+        }
+
+        .form__accept-checks label {
+            font-size: 0.75rem;
         }
     }
 

@@ -78,16 +78,16 @@
     --font-liger: "BlackLiger", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 
     --text-display: clamp(3rem, 2.3269rem + 2.5641vw, 5.5rem);
-    --text-title-xl: clamp(3.125rem, 1.5rem + 2.0313vw, 3.9375rem);
+    --text-title-xl: clamp(2rem, -0.2143rem + 3.4598vw, 3.9375rem);
     --text-title-l: clamp(2.875rem, 2.0889rem + 1.0897vw, 3.9375rem);
-    --text-title-m: clamp(1.875rem, 0.5893rem + 2.0089vw, 3rem);
+    --text-title-m: clamp(1.75rem, 0.3214rem + 2.2321vw, 3rem);
     --text-title-s: clamp(1.125rem, 1.024rem + 0.3846vw, 1.5rem);
     --text-title-xxs: 1rem;
-    --text-subtitle-lg: clamp(1.25rem, 1.0192rem + 1.0256vw, 2.25rem);
+    --text-subtitle-lg: clamp(1rem, -0.4286rem + 2.2321vw, 2.25rem);
     --text-subtitle: clamp(1.25rem, 0.9808rem + 1.0256vw, 2.25rem);
     --text-body-m: clamp(0.9375rem, 0.887rem + 0.1923vw, 1.125rem);
     --text-body-s: .875rem;
-    --text-body-xs: .75rem;
+    --text-body-xs: clamp(0.5375rem, 0.412rem + 0.229vw, 0.75rem);
     --text-button-l: clamp(1rem, 0.9663rem + 0.1282vw, 1.125rem);
     --text-button-m: .875rem;
 
@@ -136,11 +136,11 @@
     --font-liger: "BlackLiger", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 
     /* typographic scale */
-    --text-display: clamp(3rem, 2.3269rem + 2.5641vw, 5.5rem);
+    --text-display: clamp(2.875rem, 1.0179rem + 2.9018vw, 4.5rem);
 
-    --text-title-xl: clamp(3.125rem, 1.5rem + 2.0313vw, 3.9375rem);
-    --text-title-l: clamp(2.875rem, 0.5893rem + 3.5714vw, 4.875rem);
-    --text-title-m: clamp(1.875rem, 0.5893rem + 2.0089vw, 3rem);
+    --text-title-xl: clamp(2rem, -0.2143rem + 3.4598vw, 3.9375rem);
+    --text-title-l: clamp(2.875rem, 0.3036rem + 4.0179vw, 5.125rem);
+    --text-title-m: clamp(1.75rem, 0.3214rem + 2.2321vw, 3rem);
     --text-title-s: clamp(1.125rem, 1.024rem + 0.3846vw, 1.5rem);
     --text-title-xxs: 1rem;
 
@@ -148,7 +148,7 @@
     --text-body-m: clamp(0.9375rem, 0.887rem + 0.1923vw, 1.125rem);
     --text-base: clamp(0.8125rem, 0.5982rem + 0.3348vw, 1rem);
     --text-body-s: .875rem;
-    --text-body-xs: .75rem;
+    --text-body-xs: clamp(0.53125rem, 0.2813rem + 0.3906vw, 0.75rem);
 
     --text-button-l: clamp(1rem, 0.9663rem + 0.1282vw, 1.125rem);
     --text-button-m: .875rem;
@@ -185,15 +185,15 @@
         /* typographic scale */
         --text-display: clamp(3rem, 2.3269rem + 2.5641vw, 5.5rem);
 
-        --text-title-l: clamp(2.625rem, 2.3625rem + 1.3125vw, 3.9375rem);
+        --text-title-l: clamp(2.5rem, 1.8901rem + 2.7108vw, 3.625rem);
         --text-title-m: clamp(1.75rem, 1.3929rem + 1.7857vw, 2.25rem);
-        --text-title-s: clamp(1.125rem, 1.024rem + 0.3846vw, 1.5rem);
-        --text-title-xxs: 1rem;
+        --text-title-s: 2rem;
+        --text-title-xxs: 1.125rem;
 
         --text-subtitle: clamp(1.25rem, 0.9808rem + 1.0256vw, 2.25rem);
         --text-body-m: clamp(0.9375rem, 0.887rem + 0.1923vw, 1.125rem);
         --text-body-s: .875rem;
-        --text-body-xs: .6875rem;
+        --text-body-xs: clamp(0.59375rem, 0.4152rem + 0.279vw, 0.75rem);
 
         --text-button-l: clamp(1rem, 0.9663rem + 0.1282vw, 1.125rem);
         --text-button-m: .875rem;
@@ -238,7 +238,7 @@
     }
 
     .text-title-xxs {
-        @apply font-thunder text-title-xxs font-medium uppercase tracking-0;
+        @apply font-thunder text-title-xxs font-medium uppercase tracking-[0.18em];
         line-height: var(--leading-100);
     }
 

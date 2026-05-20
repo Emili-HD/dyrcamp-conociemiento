@@ -2,6 +2,59 @@
 
 Todos los cambios relevantes de este proyecto se documentan en este archivo.
 
+## [0.3.0] - 2026-05-20
+
+### Added
+
+- Añadida dependencia `lenis` en `package.json` y `package-lock.json`.
+- Añadida carpeta `public/media/videos/originals/` con copias originales de los vídeos antes de su optimización.
+- Añadido footer mobile no fijo al final del contenido en `App.vue`.
+- Añadido prop `fixed` a `Footer.vue` para alternar entre footer fijo y footer en flujo.
+- Añadida variante visual `footer--dark` para adaptar el footer a fondos claros.
+- Añadido indicador de scroll con flechas animadas en `Section1.vue`.
+- Añadido segundo mensaje superpuesto en el título de `Section2.vue`, sincronizado con el swap de vídeos.
+- Añadida lista de textos mobile independiente en `Section5.vue`, sincronizada con la lista desktop.
+- Añadidos sources responsive en `Section6.vue` para servir vídeo mobile o desktop según viewport.
+
+### Changed
+
+- Versión del proyecto actualizada a `0.3.0`.
+- Optimizados los vídeos de `public/media/videos/`, reduciendo el peso de los MP4 usados en la landing.
+- `App.vue`
+  - Mantiene `smoothTouch: 0.1` para unificar el comportamiento de ScrollSmoother y ScrollTrigger en touch/tablet.
+  - Sincroniza el estado oscuro/claro de todos los footers con la transición del fondo blanco global.
+  - Renderiza footer fijo en desktop y footer no fijo en mobile.
+- `src/assets/main.css`
+  - Ajustada la escala tipográfica responsive para mejorar encaje en mobile, tablet y desktop.
+  - Ajustado `text-title-xxs` con tracking específico.
+- `Footer.vue`
+  - Reorganizado el layout para mobile con columnas, centrado de textos y espaciados más compactos.
+  - Añadida comprobación defensiva antes de inicializar la animación GSAP del enlace del sitio.
+- `Section1.vue`
+  - Convertido el hero a layout responsive con título centrado en mobile/tablet y alineado izquierdo en desktop.
+  - Ajustada la imagen de fondo para ocupar viewport completo y reposicionarse por breakpoint.
+  - Simplificada la animación de entrada del título para evitar rotaciones que penalizaban el responsive.
+  - Ajustados tamaño y letter-spacing del subtítulo por breakpoint.
+- `Section2.vue`
+  - Reorganizado el grid en mobile/tablet con dos filas y ajustes de escala/altura de vídeos.
+  - Añadida transición entre los dos bloques de texto durante la animación principal.
+- `Section3.vue` y `Section4.vue`
+  - Ajustados spans, tamaños, uppercase y centrado para mejorar el comportamiento responsive.
+- `Section5.vue`
+  - Reducido el mínimo de la imagen central de `300px` a `275px`.
+  - Reducido el gap mínimo entre imágenes.
+  - Sincronizados textos desktop y mobile por índice durante toda la secuencia GSAP.
+  - Añadido layout mobile en columna con altura reservada para el texto y ajustes específicos para viewports estrechos.
+- `Section6.vue`
+  - Reemplazado `src` único por `<source>` responsive.
+  - Eliminado el ratio fijo en mobile para que el vídeo se adapte mejor.
+- `Section7.vue`
+  - Ajustados grid, padding, tamaños de título/subtítulo y campos para mobile.
+  - Añadido hover claro al botón de envío.
+  - Ajustado tamaño de labels y checks en viewports pequeños.
+- `README.md`
+  - Actualizada la versión, el stack, la estructura de vídeos y la documentación de los cambios responsive, footer, media y secciones.
+
 ## [0.2.0] - 2026-05-17
 
 ### Added

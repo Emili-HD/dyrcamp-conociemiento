@@ -5,17 +5,20 @@
     >
         <div
             ref="wrapperRef"
-            class="section__wrapper grid grid-cols-4 lg:grid-cols-12 col-span-full"
+            class="section__wrapper grid grid-cols-4 lg:grid-cols-12 col-span-full max-lg:grid-rows-2 max-lg:gap-10 mt-20 md:mt-0"
         >
             <h2
                 ref="titleRef"
-                class="section__title col-start-2 col-span-3 text-title-m mt-75 self-start"
+                class="section__title col-start-1 col-span-4 lg:col-start-2 lg:col-span-3 text-4xl md:text-title-m uppercase max-lg:mb-10 lg:mt-0 self-start lg:self-center md:max-w-[20ch] max-lg:row-start-2"
             >
-                Normativas complejas y cambiantes, exigencias crecientes,
-                dudas en decisiones técnicas, riesgos en homologaciones… </h2>
+                <span>Normativas complejas y cambiantes, exigencias crecientes,
+                    dudas en decisiones técnicas, riesgos en homologaciones…</span>
+                <span>El camino a través del marco regulatorio de la iluminación 
+                    y señalización para vehículos industriales está lleno de peligros.</span>
+            </h2>
             <div
                 ref="videosRef"
-                class="videos col-start-5 col-span-8 grid grid-cols-[1.5fr_4fr_1.5fr] gap-5 h-[70vh] self-center px-20"
+                class="videos scale-132 lg:scale-100 origin-bottom-left col-start-1 col-span-full lg:col-start-5 lg:col-span-8 grid grid-cols-[1.5fr_4fr_1.5fr] gap-5 h-[50vh] lg:h-[70vh] self-start lg:self-center px-0 xl:px-20"
             >
                 <div
                     ref="leftSlotRef"
@@ -129,6 +132,7 @@
 
         ctx = gsap.context(() => {
             let activeMedia = null
+            const titleItems = gsap.utils.toArray(':scope > span', title)
 
             const pauseMedia = (media, reset = false) => {
                 try {
@@ -177,6 +181,14 @@
 
             gsap.set(titleSplit.chars, {
                 autoAlpha: 0.5
+            })
+
+            gsap.set(titleItems, {
+                autoAlpha: 0
+            })
+
+            gsap.set(titleItems[0], {
+                autoAlpha: 1
             })
 
             gsap.to(titleSplit.chars, {
@@ -257,6 +269,8 @@
             videoSwapFlip.paused(false)
             tl.to(leftVideo, { autoAlpha: 1, duration: 1 }, '<')
             tl.to(centerVideo, { autoAlpha: 0.3, duration: 1 }, '<')
+            tl.to(titleItems[0], { autoAlpha: 0, duration: 1 }, '<')
+            tl.to(titleItems[1], { autoAlpha: 1, duration: 1 }, '<')
 
             tl.to({}, { duration: 0.4 })
 
@@ -288,6 +302,19 @@
         align-items: center;
     }
 
+    .section__title {
+        position: relative;
+    }
+
+    .section__title > span {
+        display: block;
+    }
+
+    .section__title > span + span {
+        inset: 0;
+        position: absolute;
+    }
+
     .videos {
         overflow: visible;
     }
@@ -317,4 +344,10 @@
         height: 100%;
         object-fit: cover;
     }
+
+    /* @media (max-width: 768px) {
+        .section__wrapper {
+            grid-template-rows: repeat(auto-fill, minmax(450px, 1fr));
+        }
+    } */
 </style>

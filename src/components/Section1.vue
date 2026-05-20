@@ -1,23 +1,60 @@
 <template>
-    <section class="section mb-56">
+    <section class="section lg:mb-56">
         <!-- section title -->
-        <div class="section__title col-start-1 col-span-7 place-content-center relative z-1 pl-16">
-            <h1 class="section__title-h1 text-left leading-[0.9] mb-4">
-                <span class="text-title-l align-top font-bold tracking-tight-3">Con conocimiento normativo,<br>no tienes
+        <div
+            class="section__title col-start-1 col-span-full lg:col-span-7 lg:place-content-center relative z-1 pt-28 md:pt-56 lg:pt-0 lg:pl-16">
+            <h1 class="section__title-h1 text-center lg:text-left leading-[0.9] mb-4">
+                <span class="text-title-l align-top font-bold tracking-tight-3 block lg:inline">Con
+                    conocimiento
+                    normativo,<br>no tienes
                     nada que </span>
-                <span class="plane-title font-liger text-[4.5rem] text-secondary">temer</span>
+                <span
+                    class="plane-title font-liger text-6xl md:text-display text-secondary block lg:inline">temer</span>
             </h1>
-            <p class="lighting-text section__title-p text-title-s font-normal tracking-8">
+            <p
+                class="lighting-text section__title-p text-title-xxs md:text-title-s font-normal tracking-8 max-lg:text-center">
                 La luz siempre gana
             </p>
         </div>
 
         <!-- section background -->
-        <div class="section__image">
+        <div class="section__image w-screen h-[95vh] lg:h-[90vh] absolute inset-x-0 top-0 z-0 overflow-clip">
             <img
                 src="/media/images/dyresel-conocimiento-hero.png"
                 alt=""
+                class="object-cover object-center max-w-none min-w-full max-h-full absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-3/4 lg:-translate-1/2"
             >
+            <div class="section__title-arrows absolute bottom-4 left-1/2 -translate-x-1/2 z-10 mx-auto">
+                <svg
+                    width="27"
+                    height="37"
+                    viewBox="0 0 27 37"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M1.71289 1L13.7129 13L25.7129 1"
+                        stroke="#D3E2E3"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
+                    <path
+                        d="M1.71289 13L13.7129 25L25.7129 13"
+                        stroke="#D3E2E3"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
+                    <path
+                        d="M1.71289 23.5L13.7129 35.5L25.7129 23.5"
+                        stroke="#D3E2E3"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
+                </svg>
+            </div>
         </div>
 
     </section>
@@ -68,21 +105,18 @@
         // con las animaciones
         const movement = 100
 
-        gsap.set([spans[0]], { autoAlpha: 1, rotateX: -90, y: -1 * movement })
-        gsap.set([spans[1]], { autoAlpha: 0, rotateY: 90, x: movement })
-        // gsap.set([spans[2]], { autoAlpha: 0, rotateY: -90, x: -1 * movement })
+        gsap.set([spans[0]], { autoAlpha: 1 })
+        gsap.set([spans[1]], { autoAlpha: 0 })
         gsap.set(p, { autoAlpha: 0 })
 
         tl = gsap.timeline({ defaults: { duration: 1, ease: 'sine.out' } })
 
         // 1) Aparece el primer span (LA LUZ)
-        tl.to(spans[0], { y: 0, rotateX: 0, delay: 0.2 })
+        tl.to(spans[0], { y: 0, delay: 0.2 })
             // Justo después, disparamos la animación de glow del composable
             .add(() => init(), '>-0.05')
             // 2) Aparece el segundo span
-            .to(spans[1], { autoAlpha: 1, rotateY: 0, x: 0 }, '>-0.75')
-            // 3) Aparece el tercer span
-            // .to(spans[2], { autoAlpha: 1, rotateY: 0, x: 0 }, '>-0.75')
+            .to(spans[1], { autoAlpha: 1, x: 0 }, '>-0.75')
             // 4) Párrafo y flechas
             .to(p, { autoAlpha: 1 }, '>-0.9')
 
@@ -216,40 +250,69 @@
 
     .section__title-p {
         margin: 0 auto 4.2rem;
+        font-size: var(--text-title-s);
+        letter-spacing: 0.33em;
     }
 
-    /* section video */
-    /**************************************/
-    .section__image {
-        width: 100%;
-        height: 100vh;
-        object-fit: cover;
-        position: absolute;
-        inset: 0;
-        z-index: 0;
-    }
-
-    /* responsive */
-    /**************************************/
     @media (max-width: 768px) {
-        .section__title {
-            grid-column-start: 1;
-            grid-column-end: 5;
-        }
-
-        .section__title-h1 span:nth-child(1) {
-            font-size: 8rem;
-        }
-
-        .section__title-h1 span:nth-child(3) {
-            font-size: 3.25rem;
+        .section__title-p {
+            font-size: var(--text-title-xxs);
+            letter-spacing: 0.18em;
         }
     }
 
-    @media (min-width: 768px) and (max-width: 1366px) and (orientation: portrait) {
-        .section__title {
-            grid-column-start: 1;
-            grid-column-end: 5;
+    /* section title arrows */
+    /**************************************/
+    .section__title-arrows {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: .5rem;
+    }
+
+    .section__title-arrows p {
+        line-height: var(--line-height-100);
+        margin-block: 0.5em;
+    }
+
+    /* arrow opacity animation */
+    .section__title-arrows svg path {
+        opacity: .2;
+        animation: arrowOpacity 1.6s ease-in-out infinite;
+    }
+
+    .section__title-arrows svg path:nth-child(2) {
+        animation-delay: .25s;
+    }
+
+    .section__title-arrows svg path:nth-child(3) {
+        animation-delay: .5s;
+    }
+
+    /* arrow opacity keyframes */
+    @keyframes arrowOpacity {
+
+        0%,
+        100% {
+            opacity: .15;
+        }
+
+        35% {
+            opacity: 1;
+        }
+
+        70% {
+            opacity: .15;
         }
     }
+
+    /* reduce motion preference: disable arrow animation */
+    @media (prefers-reduced-motion: reduce) {
+        .section__title-arrows svg path {
+            animation: none;
+        }
+    }
+
+
 </style>
